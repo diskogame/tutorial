@@ -1,0 +1,102 @@
+/*if keyboard_check(ord("W")) {
+	if  y < 0 {
+		//Nothing
+	} else {
+		y -= mySpeed;
+	}
+} */
+/*if keyboard_check(ord("S")) {
+	if y > room_height {
+		//Nothing
+	} else {
+		y += mySpeed;
+	}
+}*/
+//horizontalMov = 0;
+hsp = 0;
+if keyboard_check(ord("A")) {
+	if x < 0 {
+		//Nothing
+	} else {
+		if !place_meeting(x - mySpeed, y, oSuelo) {
+			hsp -= mySpeed;
+		}
+	}
+	
+}
+if keyboard_check(ord("D")) {
+	if x > room_width {
+		//Nothing
+	} else {
+		if !place_meeting(x + mySpeed, y, oSuelo) {
+			hsp += mySpeed;
+		}
+	}
+	
+}
+
+x = x + hsp;
+
+
+vsp = gravityPlayer;
+
+//Jump
+if keyboard_check_pressed(vk_space) && place_meeting(x, y + 1, oSuelo) {
+	vsp = - 70;
+	y = y - 70;
+}
+
+//Collision
+/*while place_meeting(x, y, oSuelo) {
+	if(horizontalMov != 0) {
+		x = x + horizontalMov;
+	} else {
+		y = y - gravityPlayer;
+	}
+}*/
+
+if !place_meeting(x, y + 1, oSuelo) {
+	while(place_meeting(x, y + vsp, oSuelo)) {
+		y = y - 1;
+	}
+	y = y + vsp;
+	
+}
+
+
+/*ANIMATION*/
+
+if !place_meeting(x, y + 1, oSuelo) {
+	sprite_index = sPlayerA;
+	image_speed = 0;
+	
+	if sign(vsp) > 0 image_index = 1; else image_index = 0;
+		
+} else {
+	image_speed = 1;
+	if hsp == 0 {
+		sprite_index = sPlayer2;
+	} else  {
+		sprite_index = sPlayerR;
+	}
+	
+}
+
+
+/* Facing */
+if hsp != 0 image_xscale = sign(hsp);
+
+facing = point_direction(x,y, mouse_x, mouse_y);
+//image_angle = point_direction(x,y, mouse_x, mouse_y)
+
+/* Firing */
+
+if mouse_check_button(mb_left) and shotRate <= 0 {
+	//Creamos el objeto oProyectile a la misma altura que el rPlayer del room
+	myProyectile = instance_create_depth(x+50, y-150, oPlayer.depth, oProyectile);
+	myProyectile.direction = facing;
+	myProyectile.speed = 10;
+	myProyectile.image_angle = facing;
+	shotRate = 3;
+}
+shotRate--;

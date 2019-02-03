@@ -1,0 +1,1 @@
+if (place_meeting(x, y, oSuelo)) instance_destroy(); //Para ver la animacion aunque disparemos encima de oSuelo
