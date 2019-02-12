@@ -23,6 +23,26 @@
             "enumb": 0,
             "eventtype": 0,
             "m_owner": "ad77a5ff-5697-481c-9eb4-85c29a478235"
+        },
+        {
+            "id": "1d2c4252-ae87-47bb-97b7-5caeb375c513",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 82,
+            "eventtype": 9,
+            "m_owner": "ad77a5ff-5697-481c-9eb4-85c29a478235"
+        },
+        {
+            "id": "7ec31855-1d70-4ceb-8254-9f0f93785869",
+            "modelName": "GMEvent",
+            "mvc": "1.0",
+            "IsDnD": false,
+            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
+            "enumb": 84,
+            "eventtype": 9,
+            "m_owner": "ad77a5ff-5697-481c-9eb4-85c29a478235"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
@@ -71,20 +91,7 @@
     ],
     "physicsStartAwake": true,
     "properties": [
-        {
-            "id": "cd3c474c-5366-4fab-905e-da56893139e1",
-            "modelName": "GMObjectProperty",
-            "mvc": "1.0",
-            "listItems": null,
-            "multiselect": false,
-            "rangeEnabled": false,
-            "rangeMax": 10,
-            "rangeMin": 0,
-            "resourceFilter": 1023,
-            "value": "0",
-            "varName": "shotRate",
-            "varType": 1
-        }
+        
     ],
     "solid": false,
     "spriteId": "5373e336-5130-4a15-ba86-83a34870f9e4",

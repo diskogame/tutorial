@@ -1,7 +1,13 @@
-key_left = keyboard_check(ord("A"));
-key_right = keyboard_check(ord("D"));
-key_jump = keyboard_check(vk_space);
 
+if(hascontrol) { //Quitamos el control al pasar de room
+	key_left = keyboard_check(ord("A"));
+	key_right = keyboard_check(ord("D"));
+	key_jump = keyboard_check(vk_space);
+} else {
+	key_left = 0;
+	key_right = 0;
+	key_jump = 0;
+}
 
 /*Movement and Collisions*/
 var move = key_right - key_left; //var --> variable temporal que solo dura un frame
@@ -20,7 +26,6 @@ if(place_meeting(x + hsp, y, oSuelo)) {
 	}
 	hsp = 0;
 }
-
 x = x + hsp;
 
 if(place_meeting(x, y + vsp, oSuelo)){
@@ -43,7 +48,7 @@ if (!place_meeting(x, y + 1, oSuelo)) {
 } else {
 	image_speed = 1;
 	if (hsp == 0) {
-		sprite_index = sPlayer2;
+		sprite_index = sPlayer;
 	} else  {
 		sprite_index = sPlayerR;
 	}

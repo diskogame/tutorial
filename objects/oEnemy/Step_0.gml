@@ -1,34 +1,41 @@
-image_angle = direction;
+vsp = vsp + grv; //vsp puede tener el salto anterior
 
-/* Bouncing */
-if y < 0 or y > room_height{
-	vspeed = vspeed * - 1;
+if(place_meeting(x + hsp, y, oSuelo)) {
+	while(!place_meeting(x + sign(hsp), y, oSuelo)) {
+		x = x + sign(hsp);
+	}
+	hsp = -hsp;
 }
 
+x = x + hsp;
 
-if x < 0 or x > room_width{ 
-	hspeed = hspeed * - 1;
+if(place_meeting(x, y + vsp, oSuelo)){
+	while(!place_meeting(x, y + sign(vsp), oSuelo)) {
+		y = y + sign(vsp);
+	}
+	vsp = 0;
 }
 
-/* Damage */
+y = y + vsp;
 
-hitBullet = instance_place(x,y,sProyectile);
 
-if instance_exists(hitBullet) {
-	with hitBullet {
-		instance_destroy();	
+/*Animation*/
+
+if (!place_meeting(x, y + 1, oSuelo)) {
+	sprite_index = sEnemyA;
+	image_speed = 0;
+	if (sign(vsp) > 0) image_index = 1; else image_index = 0;
+		
+} else {
+	image_speed = 1;
+	if (hsp == 0) {
+		sprite_index = sEnemy;
+		image_index = 0; //new
+	} else  {
+		sprite_index = sEnemyR;
 	}
 	
-	image_xscale = image_xscale - 0.2;
-	image_yscale = image_xscale;
-	
-	vida -= 20;
-	//show_message(string(vida) + ":" + string(image_xscale));
-	if image_xscale <= 0 {
-		instance_create_depth(random(room_width), random(room_height), oEnemy.depth, oEnemy);
-		instance_create_depth(random(room_width), random(room_height), oEnemy.depth, oEnemy);
-		instance_destroy();
-	}
-	
-}
+}	
 
+/* Facing */
+if (hsp != 0) image_xscale = sign(hsp);
