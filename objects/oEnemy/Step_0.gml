@@ -1,13 +1,18 @@
 vsp = vsp + grv; //vsp puede tener el salto anterior
 
-if(place_meeting(x + hsp, y, oSuelo)) {
-	while(!place_meeting(x + sign(hsp), y, oSuelo)) {
-		x = x + sign(hsp);
+goToPlayerX = sign(oPlayer.x - x);
+
+playerDirection = hsp * goToPlayerX;
+
+if(place_meeting(x + playerDirection, y, oSuelo)) {
+	while(!place_meeting(x + sign(playerDirection), y, oSuelo)) {
+		x = x + sign(playerDirection);
 	}
-	hsp = -hsp;
+	playerDirection = -playerDirection;
+	//goToPlayerX = 1; 
 }
 
-x = x + hsp;
+x = x + playerDirection; //aki Ajustarlo
 
 if(place_meeting(x, y + vsp, oSuelo)){
 	while(!place_meeting(x, y + sign(vsp), oSuelo)) {
