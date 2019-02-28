@@ -15,7 +15,7 @@ if(mode != TRANS_MODE.OFF) {
 			}
 			case TRANS_MODE.NEXT:
 			{
-				mode = TRANS_MODE.INTRO;
+				mode = TRANS_MODE.INTRO; 
 				room_goto_next();
 				break;
 			}

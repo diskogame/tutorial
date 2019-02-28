@@ -1,18 +1,21 @@
 vsp = vsp + grv; //vsp puede tener el salto anterior
 
-goToPlayerX = sign(oPlayer.x - x);
+goToPlayerX = 1;
+if(abs(oPlayer.x - x) < 300) && (abs(oPlayer.y - y) < 300)  { //Distancia entre player y enemigo para moverse hacia el player
+	goToPlayerX = sign(oPlayer.x - x);
+}
+enemyDirection = hsp * goToPlayerX;
 
-playerDirection = hsp * goToPlayerX;
-
-if(place_meeting(x + playerDirection, y, oSuelo)) {
-	while(!place_meeting(x + sign(playerDirection), y, oSuelo)) {
-		x = x + sign(playerDirection);
+if(place_meeting(x + enemyDirection, y, oSuelo)) {
+	while(!place_meeting(x + sign(enemyDirection), y, oSuelo)) {
+		x = x + sign(enemyDirection);
 	}
-	playerDirection = -playerDirection;
+	enemyDirection = -enemyDirection;
+	hsp = -hsp;
 	//goToPlayerX = 1; 
 }
 
-x = x + playerDirection; //aki Ajustarlo
+x = x + enemyDirection; //aki Ajustarlo
 
 if(place_meeting(x, y + vsp, oSuelo)){
 	while(!place_meeting(x, y + sign(vsp), oSuelo)) {
@@ -33,7 +36,7 @@ if (!place_meeting(x, y + 1, oSuelo)) {
 		
 } else {
 	image_speed = 1;
-	if (hsp == 0) {
+	if (enemyDirection == 0) {
 		sprite_index = sEnemy;
 		image_index = 0; //new
 	} else  {
@@ -43,4 +46,5 @@ if (!place_meeting(x, y + 1, oSuelo)) {
 }	
 
 /* Facing */
-if (hsp != 0) image_xscale = sign(hsp);
+if (hsp != 0) image_xscale = sign(hsp) * size;
+image_yscale = size;

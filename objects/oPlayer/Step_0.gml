@@ -1,4 +1,4 @@
-
+#region
 if(hascontrol) { //Quitamos el control al pasar de room
 	key_left = keyboard_check(ord("A"));
 	key_right = keyboard_check(ord("D"));
@@ -8,6 +8,7 @@ if(hascontrol) { //Quitamos el control al pasar de room
 	key_right = 0;
 	key_jump = 0;
 }
+#endregion
 
 /*Movement and Collisions*/
 var move = key_right - key_left; //var --> variable temporal que solo dura un frame
@@ -46,6 +47,11 @@ if (!place_meeting(x, y + 1, oSuelo)) {
 	if (sign(vsp) > 0) image_index = 1; else image_index = 0;
 		
 } else {
+	
+	if(sprite_index == sPlayerA) {
+		audio_play_sound(snLanding, 4, false);
+	}
+	
 	image_speed = 1;
 	if (hsp == 0) {
 		sprite_index = sPlayer;

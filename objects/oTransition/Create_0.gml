@@ -9,7 +9,7 @@ enum TRANS_MODE {
 	NEXT, //==1
 	GOTO, //==2
 	RESTART, //==3
-	INTRO //==4
+	INTRO //==4 //INTRO es el estado de los bordes negros
 }
 
 mode = TRANS_MODE.INTRO;
