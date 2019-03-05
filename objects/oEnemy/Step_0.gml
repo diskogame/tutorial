@@ -1,8 +1,10 @@
 vsp = vsp + grv; //vsp puede tener el salto anterior
 
 goToPlayerX = 1;
-if(abs(oPlayer.x - x) < 300) && (abs(oPlayer.y - y) < 300)  { //Distancia entre player y enemigo para moverse hacia el player
-	goToPlayerX = sign(oPlayer.x - x);
+if(instance_exists(oPlayer)) {
+	if(abs(oPlayer.x - x) < 300) && (abs(oPlayer.y - y) < 300)  { //Distancia entre player y enemigo para moverse hacia el player
+		goToPlayerX = sign(oPlayer.x - x);
+	}
 }
 enemyDirection = hsp * goToPlayerX;
 

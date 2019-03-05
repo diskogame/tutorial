@@ -3,6 +3,11 @@ if (instance_exists(follow)) {
 
 	xTo = follow.x;
 	yTo = follow.y;
+	
+	if((follow).object_index == oPlayerD) {
+		x = xTo;
+		y = yTo;
+	}
 }
 
 x += (xTo - x) / 25;
